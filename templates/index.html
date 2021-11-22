@@ -1,0 +1,33 @@
+{% extends "base.html" %} {% block head %} {{ super() }}
+<link
+  rel="stylesheet"
+  href="{{ url_for('static', filename= 'extended_beauty.css') }}"
+/>
+{% endblock %} {% block content %}
+<div id="intro">
+  {% with messages = get_flashed_messages() %} {% if messages %}
+  <div class="notification is-success">
+    {{ messages[0] }}
+  </div>
+  {% endif %} {% endwith %}
+  <h1>
+    Hello!
+  </h1>
+  <center>
+<!-- change logo here -->
+<!--  these image files should be in /static/images directory  -->
+    <img
+      src="{{ url_for('static', filename= 'images/logo.jpg') }}"
+      alt="speed coderslogo"
+      height="200px"
+    />
+  </center>
+  <p>
+    Welcome to EUSL TC FAS DCS 2019/20 Batch Portal! 
+    <br />
+    <marquee>
+      Wait for this site to be developed 
+    </marquee>
+  </p>
+</div>
+{% endblock %}

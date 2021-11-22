@@ -1,0 +1,149 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    {% block head %}
+    <title>{% block title %}{% endblock %}DCS Portal</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+<!-- change logo here -->
+<!--  these image files should be in /static/images directory  -->
+    <link
+      rel="shortcut icon"
+      type="image/x-icon"
+      href="{{ url_for('static', filename= 'images/fas-logo.jpg') }}"
+    />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Arvo&display=swap"
+      rel="stylesheet"
+    />
+<!-- change css here -->
+<!--  these css files should be in /static directory  -->
+<!-- 
+	Thilina,
+	me stylesheet eka ain karanawa, e nisa meka amathaka karanna
+-->
+    <link
+      rel="stylesheet"
+      href="{{ url_for('static', filename= 'beauty.css') }}"
+    />
+
+
+<!-- do not change - bootstrap content -->
+<!-- unless it's a full replacement of stylesheets -->
+<!-- from here -->
+<!-- 
+	Thilina,
+	Methana idan thiyenne man bootstrap eken gaththa stylesheets
+	me tika ain karala, oyage styles import karanna
+-->
+    <link
+      rel="stylesheet"
+      href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css"
+      integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm"
+      crossorigin="anonymous"
+    />
+
+    <script
+      src="https://code.jquery.com/jquery-3.2.1.slim.min.js"
+      integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN"
+      crossorigin="anonymous"
+    ></script>
+
+    <script
+      src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"
+      integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q"
+      crossorigin="anonymous"
+    ></script>
+
+    <script
+      src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"
+      integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl"
+      crossorigin="anonymous"
+    ></script>
+    {% endblock %}
+  </head>
+<!-- to here -->
+
+<!--
+	Thilina,
+	methanin palleha tikata adala wennna,
+	thiyena class names walata ma styles danna balanna.
+	meka Nav Bar eka. 
+	page eka open krnakota anan manan pennai, wena kali, ewa ganan ganna epa.
+	thiyena widiya wenas karanna yanna epa.
+	page eke colors/fonts wenas karanna balanna.
+-->
+
+  <body>
+    <nav class="navbar navbar-expand-lg navbar-light bg-light">
+      <a class="navbar-brand" href="{{ url_for('main.index') }}">
+        DCS Portal
+      </a>
+      <button
+        class="navbar-toggler"
+        type="button"
+        data-toggle="collapse"
+        data-target="#navbarSupportedContent"
+        aria-controls="navbarSupportedContent"
+        aria-expanded="false"
+        aria-label="Toggle navigation"
+      >
+        <span class="navbar-toggler-icon"></span>
+      </button>
+
+      <div class="collapse navbar-collapse" id="navbarSupportedContent">
+        <ul class="navbar-nav mr-auto">
+          <li class="nav-item active">
+            <a
+              href="{{ url_for('main.profile') }}"
+              class="btn btn-outline-secondary"
+              role="button"
+              >Item 1</a
+            >
+          </li>
+          <li class="nav-item">
+            <a
+              href="{{ url_for('main.profile') }}"
+              class="btn btn-outline-secondary"
+              role="button"
+              style="margin-left: 4px;"
+              >Item 1</a
+            >
+          </li>
+        </ul>
+        <form class="form-inline my-2 my-lg-0">
+          {% if current_user.is_authenticated %}
+          <a
+            href="{{ url_for('main.profile') }}"
+            class="btn btn-outline-primary"
+            role="button"
+            >User ristricted Item 1</a
+          >
+          {% endif %} {% if not current_user.is_authenticated %}
+          <a
+            href="{{ url_for('auth.signup') }}"
+            class="btn btn-outline-primary"
+            role="button"
+            >Signup</a
+          >
+          <a
+            href="{{ url_for('auth.login') }}"
+            class="btn btn-outline-primary"
+            role="button"
+            style="margin-left: 4px;"
+            >Login</a
+          >
+          {% endif %} {% if current_user.is_authenticated %}
+          <a
+            href="{{ url_for('auth.logout') }}"
+            class="btn btn-outline-danger"
+            role="button"
+            style="margin-left: 4px;"
+            >Log Out</a
+          >
+          {% endif %}
+        </form>
+      </div>
+    </nav>
+    {% block content %} {% endblock %}
+  </body>
+</html>

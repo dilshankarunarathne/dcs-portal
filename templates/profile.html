@@ -1,0 +1,18 @@
+{% extends "base.html" %} 
+{% block title %}Profile - {% endblock %} 
+{% block head %} 
+{{ super() }}
+<link
+  rel="stylesheet"
+  href="{{ url_for('static', filename= 'extended_beauty.css') }}"
+/>
+{% endblock %} {% block content %}
+<h1>
+  Welcome, {{ name }}!
+</h1>
+<p>
+  You can find the timetable here
+  <a href="{{ url_for('main.timeline') }}">here</a>.
+</p>
+<p></p>
+{% endblock %}
